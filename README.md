@@ -22,7 +22,7 @@ Node 18.0 and later.
 
 ### Usage
 ```bash
-~$: npm sonargit
+~$: npm run sonargit
 ```
 
 ### Logs
