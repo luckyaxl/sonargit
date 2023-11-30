@@ -1,5 +1,7 @@
 # Sonargit Scraper
 
+![SonarGit Scraper](hero.png)
+
 A small tool to fetch pull request data and SonarQube screenshots, making it easier for Catalyst engineers to recapitulate KPI data.
 
 ## Requirements
