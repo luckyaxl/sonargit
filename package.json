@@ -1,0 +1,16 @@
+{
+  "name": "sonargit-scraper",
+  "version": "0.0.1",
+  "description": "GitHub & SonarQube Pull Request Scraper",
+  "private": true,
+  "scripts": {
+    "sonargit": "node ./src/index.js"
+  },
+  "author": "luckyaxl <luckyaxl@machtwatch.co.id>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "puppeteer": "^21.5.2"
+  }
+}
