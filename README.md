@@ -14,6 +14,7 @@ Node 18.0 and later.
 ~$: git clone https://github.com/luckyaxl/sonargit-scraper
 ~$: cd sonargit-scraper
 ~$: npm install
+~$: chmod +x sonargit.sh
 ```
 
 ### Quick start
@@ -23,6 +24,12 @@ Node 18.0 and later.
 ### Usage
 ```bash
 ~$: npm run sonargit
+```
+
+or
+
+```bash
+~$: ./sonargit
 ```
 
 ### Logs
