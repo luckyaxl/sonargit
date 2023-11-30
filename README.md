@@ -1,5 +1,7 @@
 # Sonargit Scraper
 
+A small tool to fetch pull request data and SonarQube screenshots, making it easier for Catalyst engineers to recapitulate KPI data.
+
 ## Requirements
 
 Node 18.0 and later.
