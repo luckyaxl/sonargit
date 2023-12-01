@@ -25,7 +25,7 @@ export const fetchPullRequests = async ({
     queryString
   )}&page=${env.PAGE}&per_page=${env.PER_PAGE}`;
 
-  console.log(`${successColorAnsi("[*]")} scraping from repo: ${env.OWNER}/${env.REPO}, auhtor: ${env.AUTHOR}`)
+  console.log(`${successColorAnsi("[*]")} scraping from repo: ${env.OWNER}/${env.REPO}, author: ${env.AUTHOR}`)
 
   try {
     const response = await fetch(apiUrl, {
