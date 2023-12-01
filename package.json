@@ -4,13 +4,24 @@
   "description": "GitHub & SonarQube Pull Request Scraper",
   "private": true,
   "scripts": {
-    "sonargit": "node ./src/index.js"
+    "build": "npx tsc"
   },
-  "author": "luckyaxl <luckyaxl@machtwatch.co.id>",
+  "bin": {
+    "sonargit": "./dist/index.js"
+  },
+  "author": "Lucky Kusuma <lucky@machtwatch.co.id>",
   "license": "MIT",
   "dependencies": {
+    "commander": "^11.1.0",
     "dotenv": "^16.3.1",
+    "figlet": "^1.7.0",
     "moment": "^2.29.4",
     "puppeteer": "^21.5.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.8",
+    "@types/node": "^20.10.1",
+    "@types/node-fetch": "^2.6.9",
+    "typescript": "^5.3.2"
   }
 }
