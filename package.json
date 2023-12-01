@@ -1,14 +1,16 @@
 {
-  "name": "@ctlyst/sonargit",
+  "name": "@luckyaxl/sonargit",
   "version": "0.0.1",
   "description": "GitHub & SonarQube Pull Request Scraper",
-  "private": true,
   "scripts": {
     "build": "npx tsc"
   },
   "bin": {
     "sonargit": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "author": "Lucky Kusuma <lucky@machtwatch.co.id>",
   "keywords": [
     "cli"
