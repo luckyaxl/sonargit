@@ -40,7 +40,11 @@ console.log(
 const shell = new commander.Command();
 
 shell
-  .version("0.0.1", "-v, --version", "output the current version")
+  .version(
+    process.env.npm_package_version as string,
+    "-v, --version",
+    "output the current version"
+  )
   .requiredOption(
     "-d, --date <date>",
     "Specify date range in format YYYY-MM-DD.YYYY-MM-DD",
