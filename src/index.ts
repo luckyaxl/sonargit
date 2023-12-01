@@ -31,15 +31,16 @@ console.log(
     font: "3D-ASCII",
   })
 );
+console.log(successColorAnsi("SonarGit v0.0.1"));
 console.log(
-  `${successColorAnsi(
-    "SonarGit Scraper v0.0.1"
-  )}\nA small tool to fetch pull requests and SonarQube screenshots,\nmaking it easier for Catalyst Engineers to generate KPI data.\n`
+  "Innovative bot scraper to streamline data extraction from GitHub pull requests \nand capture dynamic SonarQube screenshots."
 );
+console.log("\x1b[48;5;21mBuilt for Catalyst Engineers\x1b[0m\n");
 
 const shell = new commander.Command();
 
 shell
+  .usage("-d <date>")
   .version(
     process.env.npm_package_version as string,
     "-v, --version",
