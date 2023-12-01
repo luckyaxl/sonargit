@@ -2,7 +2,7 @@
 
 ![SonarGit Scraper](hero.png)
 
-A small tool to fetch pull request data and SonarQube screenshots, making it easier for Catalyst engineers to recapitulate KPI data.
+A small tool to fetch pull requests and SonarQube screenshots, making it easier for Catalyst Engineers to generate KPI data.
 
 ## Requirements
 
@@ -11,29 +11,18 @@ Node 18.0 and later.
 ### Installation
 
 ```bash
-~$: git clone https://github.com/luckyaxl/sonargit-scraper
-~$: cd sonargit-scraper
-~$: npm install
-~$: chmod +x sonargit.sh
+~$: npm install -g sonargit
 ```
 
-### Quick start
-1.  Create the `.env` file based on `.env.example`.
-2.  Run `npm` in order to install dependencies.
-
-### Usage
-```bash
-~$: npm run sonargit
-```
-
-or
+### Example Usage
 
 ```bash
-~$: ./sonargit
+~$: sonargit -d 2023-10-10.2023-12-30
 ```
 
 ### Logs
-The log file will be generated in the `logs` directory
+
+The log file will be generated in the `~/Users/yourname/sonargit` directory
 
 ## Function Breakdown
 
@@ -56,7 +45,7 @@ The `fetchRegularComments` function fetches comments on a GitHub pull request, e
 
 ### Sequential Processing of Pull Requests
 
-The `processPullRequestsSequentially` function processes an array of pull requests sequentially, fetching information about each pull request and taking a screenshot if a SonarQube URL is found.
+The `sequentialProcess` function processes an array of pull requests sequentially, fetching information about each pull request and taking a screenshot if a SonarQube URL is found.
 
 ### Usage of Moment.js
 
