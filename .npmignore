@@ -1,0 +1,29 @@
+# Logs
+logs
+*.log
+*.DS_STORE
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# env
+.env
+.env.local
+.env.staging
+.env.production
+
+# TypeScript cache
+*.tsbuildinfo\
+
+# image
+src/images/banner.png
