@@ -10,6 +10,9 @@
     "sonargit": "./dist/index.js"
   },
   "author": "Lucky Kusuma <lucky@machtwatch.co.id>",
+  "keywords": [
+    "cli"
+  ],
   "license": "MIT",
   "dependencies": {
     "commander": "^11.1.0",
