@@ -2,6 +2,7 @@ import fs from "fs";
 import fetch from "node-fetch";
 import { sequentialProcess } from "../core";
 import { errorColorAnsi, successColorAnsi } from "../utils";
+import moment from "moment";
 
 const env = process.env;
 
@@ -24,6 +25,8 @@ export const fetchPullRequests = async ({
     queryString
   )}&page=${env.PAGE}&per_page=${env.PER_PAGE}`;
 
+  console.log(`${successColorAnsi("[*]")} scraping from repo: ${env.OWNER}/${env.REPO}, auhtor: ${env.AUTHOR}`)
+
   try {
     const response = await fetch(apiUrl, {
       headers: {
@@ -40,7 +43,11 @@ export const fetchPullRequests = async ({
 
     if (data) {
       console.log(
-        `${successColorAnsi("[+]")} Total Pull Request: ${data.total_count}`
+        `${successColorAnsi("[*]")} extracting ${
+          data.total_count
+        } pull request from ${moment(startDate).format("DD MMM YY")} - ${moment(
+          endDate
+        ).format("DD MMM YY")}\n`
       );
 
       if (!fs.existsSync(outputDirectory)) {
