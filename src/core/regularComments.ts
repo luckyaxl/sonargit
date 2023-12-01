@@ -28,7 +28,7 @@ export const fetchRegularComments = async (
 
     const regularComments: any[] = await response.json();
 
-    let percentage = "0";
+    let percentage: string = "0";
     let sonarQubeUrl: string | undefined = undefined;
 
     const regex = /(\d+\.\d+%)\s*Coverage/;
