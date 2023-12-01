@@ -1,5 +1,5 @@
 {
-  "name": "sonargit-scraper",
+  "name": "@ctlyst/sonargit",
   "version": "0.0.1",
   "description": "GitHub & SonarQube Pull Request Scraper",
   "private": true,
