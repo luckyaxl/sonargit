@@ -11,6 +11,8 @@ export const sequentialProcess = async (
   outputDir: string,
   logFilePath: string
 ) => {
+  console.log(`${successColorAnsi("[*]")} Start scraping...`);
+
   try {
     const browser = await puppeteer.launch({
       headless: "new",

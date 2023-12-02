@@ -25,7 +25,7 @@ export const fetchPullRequests = async ({
   logFilePath,
 }: FetchPullRequests) => {
   console.log(
-    `${successColorAnsi("[*]")} scraping from repo: ${env.OWNER}/${
+    `${successColorAnsi("[*]")} fetching from repo: ${env.OWNER}/${
       env.REPO
     }, author: ${env.AUTHOR}`
   );
@@ -74,7 +74,7 @@ export const fetchPullRequests = async ({
   console.log(
     `${successColorAnsi(
       "[*]"
-    )} extracting ${totalData} pull request from ${moment(startDate).format(
+    )} found ${totalData} pull request from ${moment(startDate).format(
       "DD MMM YY"
     )} - ${moment(endDate).format("DD MMM YY")}\n`
   );
