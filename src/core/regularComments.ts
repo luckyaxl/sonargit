@@ -11,12 +11,15 @@ interface RegularCommentsResult {
 export const fetchRegularComments = async (
   pullNumber: string
 ): Promise<RegularCommentsResult | undefined> => {
+  let percentage: string = "0";
+  let sonarQubeUrl: string | undefined = undefined;
+
   try {
     const response = await fetch(
       `https://api.github.com/repos/${env.OWNER}/${env.REPO}/issues/${pullNumber}/comments`,
       {
         headers: {
-          Accept: "application/vnd.github.v3+json",
+          Accept: "application/vnd.github.json",
           Authorization: `Bearer ${env.GITHUB_TOKEN}`,
         },
       }
@@ -27,9 +30,6 @@ export const fetchRegularComments = async (
     }
 
     const regularComments: any[] = await response.json();
-
-    let percentage: string = "0";
-    let sonarQubeUrl: string | undefined = undefined;
 
     const regex = /(\d+\.\d+%)\s*Coverage/;
 
@@ -48,16 +48,15 @@ export const fetchRegularComments = async (
           `${errorColorAnsi("[!]")} Percentage not found in the text.`
         );
     });
-
-    return {
-      percentage,
-      sonarQubeUrl,
-    };
   } catch (error) {
     console.error(
       `${errorColorAnsi("[!]")} Failed to fetch regular comments. ${error}`
     );
+    process.exit(1);
   }
 
-  return undefined;
+  return {
+    percentage,
+    sonarQubeUrl,
+  };
 };
