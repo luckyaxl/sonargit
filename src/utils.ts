@@ -45,7 +45,6 @@ export const isValidDateFormat: DateFormatter = (dateString: string) => {
  * Check required env var.
  *
  * @param envVariables - The input env variables.
- * @returns void.
  */
 export const checkEnvVar: CheckEnvVar = (envVariables: string[]) => {
   const missingVariables: string[] = [];
@@ -62,7 +61,7 @@ export const checkEnvVar: CheckEnvVar = (envVariables: string[]) => {
         ", "
       )} \n\nsee ${os.homedir()}/sonargit/sonargit.config`
     );
-    process.exit(1); // Exit the process with an error code
+    process.exit(1);
   }
 
   return;
