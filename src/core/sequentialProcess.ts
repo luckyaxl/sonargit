@@ -2,7 +2,7 @@ import moment from "moment";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import { fetchRegularComments } from "./regularComments";
-import { successColorAnsi } from "../utils";
+import { errorColorAnsi, successColorAnsi } from "../utils";
 
 const env = process.env;
 
@@ -48,24 +48,37 @@ export const sequentialProcess = async (
           });
         }
 
-        const msg = `${moment
+        const mergedAt = moment
           .utc(item.pull_request.merged_at)
           .utcOffset(7)
-          .format("DD MMM YYYY")}, ${item.html_url}, ${percentage}`;
+          .format("DD MMM YYYY");
+        const prUrl = item.html_url;
 
-        fs.appendFile(logFilePath, `${msg}\n`, (err) => {
-          if (err) {
-            console.error(`Error writing to log file:`, err);
+        const msg = `${mergedAt} ${prUrl} ${percentage}`;
+
+        fs.appendFile(
+          logFilePath,
+          `${mergedAt},${prUrl},${percentage}\n`,
+          (err) => {
+            if (err) {
+              console.error(
+                `${errorColorAnsi("[!]")} Error writing to log file:`,
+                err
+              );
+            }
           }
-        });
+        );
 
         console.log(`${successColorAnsi("[+]")} ${msg}`);
       } catch (error) {
-        console.error(`Error processing pull request:`, error);
+        console.log(
+          `${errorColorAnsi("[!]")} Error processing pull request:`,
+          error
+        );
       }
     }
 
-    console.log(`\nDone. see results under ${outputDir}`);
+    console.log(`\nDone. see the results under ${outputDir}`);
 
     await browser.close();
     process.exit(1);
