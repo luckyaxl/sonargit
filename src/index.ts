@@ -16,7 +16,7 @@ const projectDir = `${userHomeDir}/sonargit`;
 dotenv.config({ path: `${userHomeDir}/sonargit/sonargit.config` });
 
 const validateFormat = (value: string) => {
-  const date = String(value).split(".");
+  const date = String(value).split("/");
   const startDate = date[0];
 
   if (!isValidDateFormat(startDate)) {
@@ -26,29 +26,24 @@ const validateFormat = (value: string) => {
   return value;
 };
 
+const banner = `${successColorAnsi("SonarGit v0.0.1")}
+Innovative bot scraper to streamline data extraction from GitHub pull requests
+and capture dynamic SonarQube screenshots.\n`;
+
 console.log(
   figlet.textSync("SonarGit", {
     font: "3D-ASCII",
   })
 );
-console.log(successColorAnsi("SonarGit v0.0.1"));
-console.log(
-  "Innovative bot scraper to streamline data extraction from GitHub pull requests \nand capture dynamic SonarQube screenshots."
-);
-console.log("\x1b[48;5;21mBuilt for Catalyst Engineers\x1b[0m\n");
+console.log(banner);
 
 const shell = new commander.Command();
 
 shell
   .usage("-d <date>")
-  .version(
-    process.env.npm_package_version as string,
-    "-v, --version",
-    "output the current version"
-  )
   .requiredOption(
     "-d, --date <date>",
-    "Specify date range in format YYYY-MM-DD.YYYY-MM-DD",
+    "Specify date range in format YYYY-MM-DD/YYYY-MM-DD",
     validateFormat
   )
   .option("-o, --output <output>", "Specify output file name, ex: output.csv");
@@ -56,7 +51,7 @@ shell
 shell.parse();
 
 const options = shell.opts();
-const date = String(options.date).split(".");
+const date = String(options.date).trim().split("/");
 const startDate = date[0];
 const endDate = date[1];
 const outputFile = options.output;
@@ -69,13 +64,11 @@ const config = `SONARQUBE_URL=
 SONAR_LOGIN=
 SONAR_PASSWORD=
 GITHUB_TOKEN=
-OWNER=
 
+OWNER=
 REPO=
 AUTHOR=
-BASE_BRANCH=main
-PAGE=1
-PER_PAGE=100\n`;
+BASE_BRANCH=main\n`;
 
 const fileName = outputFile
   ? path.basename(outputFile)
@@ -100,6 +93,7 @@ const requiredEnvVariables = [
   "OWNER",
   "REPO",
   "AUTHOR",
+  "BASE_BRANCH",
 ];
 
 checkEnvVar(requiredEnvVariables);
