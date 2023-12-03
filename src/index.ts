@@ -16,10 +16,9 @@ const projectDir = `${userHomeDir}/sonargit`;
 dotenv.config({ path: `${userHomeDir}/sonargit/sonargit.config` });
 
 const validateFormat = (value: string) => {
-  const date = String(value).split("/");
-  const startDate = date[0];
+  const [startDate, endDate] = String(value).split("/");
 
-  if (!isValidDateFormat(startDate)) {
+  if (!isValidDateFormat(startDate) || !isValidDateFormat(endDate)) {
     throw new commander.InvalidArgumentError("YYYY-MM-DD");
   }
 
