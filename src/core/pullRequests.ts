@@ -25,7 +25,7 @@ export const fetchPullRequests = async ({
   logFilePath,
 }: FetchPullRequests) => {
   console.log(
-    `${successColorAnsi("[*]")} fetching from repo: ${env.OWNER}/${
+    `${successColorAnsi("[*]")} Fetching data from repo: ${env.OWNER}/${
       env.REPO
     }, author: ${env.AUTHOR}`
   );
@@ -74,10 +74,11 @@ export const fetchPullRequests = async ({
   console.log(
     `${successColorAnsi(
       "[*]"
-    )} found ${totalData} pull request from ${moment(startDate).format(
-      "DD MMM YY"
-    )} - ${moment(endDate).format("DD MMM YY")}\n`
+    )} Found ${totalData} pull request between ${moment(startDate).format(
+      "DD MMM 'YY"
+    )} - ${moment(endDate).format("DD MMM 'YY")}`
   );
+  console.log(`${successColorAnsi("[*]")} Start scraping...\n`);
 
   if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
