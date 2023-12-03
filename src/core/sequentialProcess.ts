@@ -11,15 +11,17 @@ export const sequentialProcess = async (
   outputDir: string,
   logFilePath: string
 ) => {
+  let browser;
+
   try {
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       headless: "new",
     });
     const page = await browser.newPage();
 
     await page.setViewport({ width: 1512, height: 850 });
 
-    await page.goto(`${env.SONARQUBE_URL}/sessions/new?return_to=%2F`, {
+    await page.goto(`${env.SONARQUBE_URL}/sessions/new`, {
       waitUntil: "networkidle0",
     });
 
@@ -28,9 +30,13 @@ export const sequentialProcess = async (
 
     await page.keyboard.press("Enter");
 
-    await page.waitForNavigation({
-      waitUntil: "networkidle0",
-    });
+    await page.waitForNetworkIdle();
+
+    const title = await page.title();
+
+    if (title === "SonarQube") {
+      throw new Error(`${errorColorAnsi("[!]")} Login SonarQube failed!`);
+    }
 
     for (const item of items) {
       try {
@@ -43,6 +49,7 @@ export const sequentialProcess = async (
           await page.goto(sonarQubeUrl, {
             waitUntil: "networkidle0",
           });
+
           await page.screenshot({
             path: `${outputDir}/screenshot_pr_${item.number}_${env.REPO}.png`,
           });
@@ -75,7 +82,11 @@ export const sequentialProcess = async (
           `${errorColorAnsi("[!]")} Error processing pull request:`,
           error
         );
-        process.exit(1);
+
+        if (browser) {
+          await browser.close();
+        }
+        process.exit();
       }
     }
 
@@ -83,7 +94,12 @@ export const sequentialProcess = async (
 
     await browser.close();
   } catch (error) {
-    console.error(`Error:`, error);
-    process.exit(1);
+    console.log(error);
+
+    if (browser) {
+      await browser.close();
+    }
+
+    process.exit();
   }
 };
