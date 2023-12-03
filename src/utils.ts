@@ -1,3 +1,4 @@
+import moment from "moment";
 import os from "os";
 
 interface SonarQubeExtractor {
@@ -48,6 +49,14 @@ export const checkEnvVar: CheckEnvVar = (envVariables: string[]) => {
   }
 
   return;
+};
+
+export const formatDate = (str: string) => {
+  if (!str) {
+    return null;
+  }
+
+  return moment(str).format("DD MMM YYYY");
 };
 
 export const successColorAnsi = (str: string) => {
