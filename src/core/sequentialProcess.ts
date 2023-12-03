@@ -2,7 +2,7 @@ import moment from "moment";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import { fetchRegularComments } from "./regularComments";
-import { errorColorAnsi, successColorAnsi } from "../utils";
+import { errorColorAnsi, successColorAnsi, warningColorAnsi } from "../utils";
 
 const env = process.env;
 
@@ -11,8 +11,6 @@ export const sequentialProcess = async (
   outputDir: string,
   logFilePath: string
 ) => {
-  console.log(`${successColorAnsi("[*]")} Start scraping...`);
-
   try {
     const browser = await puppeteer.launch({
       headless: "new",
@@ -56,7 +54,7 @@ export const sequentialProcess = async (
           .format("DD MMM YYYY");
         const prUrl = item.html_url;
 
-        const msg = `${mergedAt} ${prUrl} ${percentage}`;
+        const msg = `${mergedAt} ${warningColorAnsi(prUrl)} ${percentage}`;
 
         fs.appendFile(
           logFilePath,
