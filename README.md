@@ -17,7 +17,7 @@ Node 18.0 and later.
 ### Example Usage
 
 ```bash
-~$: sonargit -d 2023-10-10.2023-12-30
+~$: sonargit -d 2023-10-10/2023-12-30
 ```
 
 ### Logs
