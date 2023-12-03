@@ -25,7 +25,7 @@ export const extractSonarQubeUrl: SonarQubeExtractor = (text: string) => {
 };
 
 export const isValidDateFormat: DateFormatter = (dateString: string) => {
-  const dateFormatRegex = /^\d{4}-\d{2}-\d{1,2}$/;
+  const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
   return dateFormatRegex.test(dateString);
 };
 
