@@ -1,7 +1,7 @@
 {
   "name": "@luckyaxl/sonargit",
   "version": "0.0.1",
-  "description": "GitHub & SonarQube Pull Request Scraper",
+  "description": "GitHub & SonarQube Bot Scraper",
   "scripts": {
     "build": "npx tsc"
   },
@@ -12,9 +12,6 @@
     "dist"
   ],
   "author": "Lucky Kusuma <lucky@machtwatch.co.id>",
-  "keywords": [
-    "cli"
-  ],
   "license": "MIT",
   "dependencies": {
     "commander": "^11.1.0",
