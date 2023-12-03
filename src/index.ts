@@ -12,8 +12,9 @@ import { checkEnvVar, isValidDateFormat, successColorAnsi } from "./utils";
 
 const userHomeDir = os.homedir();
 const projectDir = `${userHomeDir}/sonargit`;
+const configPath = `${projectDir}/sonargit.config`;
 
-dotenv.config({ path: `${userHomeDir}/sonargit/sonargit.config` });
+dotenv.config({ path: configPath });
 
 const validateFormat = (value: string) => {
   const [startDate, endDate] = String(value).split("/");
@@ -41,7 +42,7 @@ const shell = new commander.Command();
 shell
   .usage("-d <date>")
   .requiredOption(
-    "-d, --date <date>",
+    "-d, --date <date> (REQUIRED)",
     "Specify date range in format YYYY-MM-DD/YYYY-MM-DD",
     validateFormat
   )
@@ -73,7 +74,6 @@ const fileName = outputFile
   ? path.basename(outputFile)
   : `${startDate}..${endDate}.csv`;
 
-const configPath = `${userHomeDir}/sonargit/sonargit.config`;
 const logFilePath = path.join(outputDirectory, fileName);
 
 if (!fs.existsSync(projectDir)) {
