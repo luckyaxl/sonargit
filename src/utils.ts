@@ -51,13 +51,13 @@ export const checkEnvVar: CheckEnvVar = (envVariables: string[]) => {
 };
 
 export const successColorAnsi = (str: string) => {
-  return `\x1b[1;32m${str}\x1b[0;37m`;
+  return `\x1b[1;32m${str}\x1b[0;0m`;
 };
 
 export const errorColorAnsi = (str: string) => {
-  return `\x1b[31m${str}\x1b[37m`;
+  return `\x1b[31m${str}\x1b[0m`;
 };
 
 export const warningColorAnsi = (str: string) => {
-  return `\x1b[0;33m${str}\x1b[0;37m`;
+  return `\x1b[0;33m${str}\x1b[0;0m`;
 };
