@@ -34,8 +34,11 @@ export const fetchRegularComments = async (
     const regex = /(\d+\.\d+%)\s*Coverage/;
 
     const sonarQubeBotComments =
-      regularComments?.filter(
-        (item) => item.user.login === "catalyst-sonarqube-app-jt[bot]"
+      regularComments?.filter((item) =>
+        [
+          "catalyst-sonarqube-app-jt[bot]",
+          "catalyst-sonarqube-app-voila[bot]",
+        ].includes(item.user?.login)
       ) || [];
 
     sonarQubeBotComments?.slice(-1).forEach((comment) => {
