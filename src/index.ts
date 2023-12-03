@@ -8,7 +8,12 @@ import moment from "moment";
 import os from "os";
 import path from "path";
 import { fetchPullRequests } from "./core";
-import { checkEnvVar, isValidDateFormat, successColorAnsi } from "./utils";
+import {
+  checkEnvVar,
+  formatDate,
+  isValidDateFormat,
+  successColorAnsi,
+} from "./utils";
 
 const userHomeDir = os.homedir();
 const projectDir = `${userHomeDir}/sonargit`;
@@ -51,13 +56,11 @@ shell
 shell.parse();
 
 const options = shell.opts();
-const date = String(options.date).trim().split("/");
-const startDate = date[0];
-const endDate = date[1];
+const [startDate, endDate] = String(options.date).trim().split("/");
 const outputFile = options.output;
 
 const outputDirectory = `${projectDir}/${moment(new Date()).format(
-  "YYYY-MM-DD_hh.mm.ss"
+  "DD MMM YYYY hh.mm.ss"
 )}`;
 
 const config = `SONARQUBE_URL=
@@ -72,7 +75,7 @@ BASE_BRANCH=main\n`;
 
 const fileName = outputFile
   ? path.basename(outputFile)
-  : `${startDate}..${endDate}.csv`;
+  : `Git ${formatDate(startDate)} - ${formatDate(endDate)}.csv`;
 
 const logFilePath = path.join(outputDirectory, fileName);
 
