@@ -75,14 +75,15 @@ export const sequentialProcess = async (
           `${errorColorAnsi("[!]")} Error processing pull request:`,
           error
         );
+        process.exit(1);
       }
     }
 
     console.log(`\nDone. see the results under ${outputDir}`);
 
     await browser.close();
-    process.exit(1);
   } catch (error) {
     console.error(`Error:`, error);
+    process.exit(1);
   }
 };
