@@ -2,9 +2,7 @@
 
 ![SonarGit Scraper](src/images/banner.png)
 
-Introducing Sonargit, an innovative bot scraper engineered to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots. Built for Catalyst engineers, leveraging cutting-edge scraping technology and system integration. Unleash productivity with a robust system that effortlessly extracts, analyzes, and visualizes key data points, revolutionizing the way Catalyst engineers navigate project metrics. Hack into efficiency with Sonargit 
-
-> "_where data meets precision for unparalleled productivity._"
+Introducing Sonargit, an automated bot scraper engineered to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots. Tailored specifically for Catalyst engineers. Unleash productivity with a bot that effortlessly extracts, analyzes, and visualizes KPI data.
 
 ## Requirements
 
@@ -47,7 +45,7 @@ After logging in, it iterates through an array of pull requests, extracts inform
 
 ### Sequential Processing of Pull Requests
 
-The `sequentialProcess` function is designed to meticulously handle an array of pull requests in a sequential manner. It systematically processes each pull request, ensuring that data fetching from GitHub adheres to rate limits. As part of its functionality, the function retrieves comprehensive information for each pull request. If a SonarQube URL is detected, the function initiates a secondary action by capturing a screenshot. Additionally, the sequential execution of SonarQube screenshot capturing is implemented to address concerns related to high memory usage, particularly when leveraging tools like Puppeteer.
+The `sequentialProcess` function used to handle an array of pull requests in a sequential execution to avoid exceeding GitHub rate limits and prevent high memory usage when using Puppeteer.
 
 ### Usage of Moment.js
 

@@ -27,7 +27,7 @@ const validateFormat = (value: string) => {
 };
 
 const banner = `${successColorAnsi("SonarGit v0.0.1")}
-Innovative bot scraper to streamline data extraction from GitHub pull requests
+Automated bot scraper to streamline data extraction from GitHub pull requests
 and capture dynamic SonarQube screenshots.\n`;
 
 console.log(
