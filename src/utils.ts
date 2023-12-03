@@ -12,12 +12,6 @@ interface CheckEnvVar {
   (envVariables: string[]): void;
 }
 
-/**
- * Extracts SonarQube URL from the given text.
- *
- * @param text - The input text.
- * @returns The SonarQube URL or null if not found.
- */
 export const extractSonarQubeUrl: SonarQubeExtractor = (text: string) => {
   const regex = /\[View in SonarQube\]\(([^)]+)\)/;
   const match = text.match(regex);
@@ -30,22 +24,11 @@ export const extractSonarQubeUrl: SonarQubeExtractor = (text: string) => {
   }
 };
 
-/**
- * Validate date format YYYY-MM-DD.
- *
- * @param dateString - The input text.
- * @returns A boolean indicating whether the date format is valid.
- */
 export const isValidDateFormat: DateFormatter = (dateString: string) => {
   const dateFormatRegex = /^\d{4}-\d{2}-\d{1,2}$/;
   return dateFormatRegex.test(dateString);
 };
 
-/**
- * Check required env var.
- *
- * @param envVariables - The input env variables.
- */
 export const checkEnvVar: CheckEnvVar = (envVariables: string[]) => {
   const missingVariables: string[] = [];
 
@@ -73,4 +56,8 @@ export const successColorAnsi = (str: string) => {
 
 export const errorColorAnsi = (str: string) => {
   return `\x1b[31m${str}\x1b[37m`;
+};
+
+export const warningColorAnsi = (str: string) => {
+  return `\x1b[0;33m${str}\x1b[0;37m`;
 };
