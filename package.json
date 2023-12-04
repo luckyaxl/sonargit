@@ -1,7 +1,7 @@
 {
-  "name": "@luckyaxl/sonargit",
+  "name": "sonargit",
   "version": "0.0.1",
-  "description": "GitHub & SonarQube Bot Scraper",
+  "description": "Automated bot scraper to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots",
   "scripts": {
     "build": "npx tsc"
   },
