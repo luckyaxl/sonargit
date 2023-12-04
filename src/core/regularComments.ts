@@ -8,6 +8,11 @@ interface RegularCommentsResult {
   sonarQubeUrl?: string;
 }
 
+const sonarQubeBotuserName = [
+  "catalyst-sonarqube-app-jt[bot]",
+  "catalyst-sonarqube-app-voila[bot]",
+];
+
 export const fetchRegularComments = async (
   pullNumber: string
 ): Promise<RegularCommentsResult | undefined> => {
@@ -35,10 +40,7 @@ export const fetchRegularComments = async (
 
     const sonarQubeBotComments =
       regularComments?.filter((item) =>
-        [
-          "catalyst-sonarqube-app-jt[bot]",
-          "catalyst-sonarqube-app-voila[bot]",
-        ].includes(item.user?.login)
+        sonarQubeBotuserName.includes(item.user?.login)
       ) || [];
 
     sonarQubeBotComments?.slice(-1).forEach((comment) => {
