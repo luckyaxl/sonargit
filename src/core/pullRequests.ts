@@ -1,8 +1,8 @@
 import fs from "fs";
+import moment from "moment";
 import fetch from "node-fetch";
 import { sequentialProcess } from "../core";
-import { errorColorAnsi, formatDate, successColorAnsi } from "../utils";
-import moment from "moment";
+import { errorColorAnsi, successColorAnsi } from "../utils";
 
 const env = process.env;
 
