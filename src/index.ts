@@ -23,6 +23,8 @@ const configPath = `${projectDir}/sonargit.config`;
 
 dotenv.config({ path: configPath });
 
+const shell = new commander.Command();
+
 const validateFormat = (value: string) => {
   if (!isValidDateFormat(value)) {
     throw new commander.InvalidArgumentError("\naccepted format: DD/MM/YYYY");
@@ -38,8 +40,6 @@ and capture dynamic SonarQube screenshots.\n`;
 console.log(figlet.textSync("SonarGit", { font: "3D-ASCII" }));
 console.log(banner);
 
-const shell = new commander.Command();
-
 shell
   .usage("-s <date>")
   .requiredOption(
@@ -47,7 +47,11 @@ shell
     "Specify start date in format DD/MM/YYYY",
     validateFormat
   )
-  .option("-e, --end <date>", "Specify end date in format DD/MM/YYYY")
+  .option(
+    "-e, --end <date>",
+    "Specify end date in format DD/MM/YYYY",
+    validateFormat
+  )
   .option("-o, --output <output>", "Specify output file name, ex: output.csv")
   .parse();
 
