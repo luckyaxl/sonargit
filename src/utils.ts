@@ -68,7 +68,7 @@ export const successColorAnsi = (str: string) => {
 };
 
 export const errorColorAnsi = (str: string) => {
-  return `\x1b[31m${str}\x1b[0m`;
+  return `\x1b[1;31m${str}\x1b[0m`;
 };
 
 export const warningColorAnsi = (str: string) => {
