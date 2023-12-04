@@ -38,6 +38,9 @@ export const sequentialProcess = async (
       throw new Error(`${errorColorAnsi("[!]")} Login SonarQube failed!`);
     }
 
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+
     for (const item of items) {
       try {
         const comments = await fetchRegularComments(item.number);
@@ -51,7 +54,9 @@ export const sequentialProcess = async (
           });
 
           await page.screenshot({
-            path: `${outputDir}/screenshot_pr_${item.number}_${env.REPO}.png`,
+            path: `${outputDir}/screenshot_pr_${item.number}_${env.REPO}.jpeg`,
+            type: "jpeg",
+            quality: 40,
           });
         }
 
@@ -77,6 +82,8 @@ export const sequentialProcess = async (
         );
 
         console.log(`${successColorAnsi("[+]")} ${msg}`);
+
+        await delay(1000);
       } catch (error) {
         console.log(
           `${errorColorAnsi("[!]")} Error processing pull request:`,
@@ -91,8 +98,6 @@ export const sequentialProcess = async (
     }
 
     console.log(`\nDone. see the results under ${outputDir}`);
-
-    await browser.close();
   } catch (error) {
     console.log(error);
 
@@ -101,5 +106,9 @@ export const sequentialProcess = async (
     }
 
     process.exit();
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
   }
 };
