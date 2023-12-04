@@ -93,7 +93,7 @@ BASE_BRANCH=main\n`;
 
 const fileName = outputFile
   ? path.basename(outputFile)
-  : `Git ${formatDate(start)} - ${formatDate(end)}.csv`;
+  : `Git ${formatDate(start)} - ${formatDate(end) || moment().format("DD MMM YYYY")}.csv`;
 
 const logFilePath = path.join(outputDirectory, fileName);
 
