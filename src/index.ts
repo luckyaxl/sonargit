@@ -11,6 +11,7 @@ import { fetchPullRequests } from "./core";
 import {
   checkEnvVar,
   formatDate,
+  formatDateGit,
   isValidDateFormat,
   successColorAnsi,
 } from "./utils";
@@ -22,10 +23,8 @@ const configPath = `${projectDir}/sonargit.config`;
 dotenv.config({ path: configPath });
 
 const validateFormat = (value: string) => {
-  const [startDate, endDate] = String(value).split("/");
-
-  if (!isValidDateFormat(startDate) || !isValidDateFormat(endDate)) {
-    throw new commander.InvalidArgumentError("YYYY-MM-DD");
+  if (!isValidDateFormat(value)) {
+    throw new commander.InvalidArgumentError("\naccepted format: DD/MM/YYYY");
   }
 
   return value;
@@ -35,31 +34,41 @@ const banner = `${successColorAnsi("SonarGit v0.0.1")}
 Automated bot scraper to streamline data extraction from GitHub pull requests
 and capture dynamic SonarQube screenshots.\n`;
 
-console.log(
-  figlet.textSync("SonarGit", {
-    font: "3D-ASCII",
-  })
-);
+console.log(figlet.textSync("SonarGit", { font: "3D-ASCII" }));
 console.log(banner);
 
 const shell = new commander.Command();
 
 shell
-  .usage("-d <date>")
+  .usage("-s <date>")
   .requiredOption(
-    "-d, --date <date> (REQUIRED)",
-    "Specify date range in format YYYY-MM-DD/YYYY-MM-DD",
+    "-s, --start <date> (REQUIRED)",
+    "Specify start date in format DD/MM/YYYY",
     validateFormat
   )
-  .option("-o, --output <output>", "Specify output file name, ex: output.csv");
-
-shell.parse();
+  .option("-e, --end <date>", "Specify end date in format DD/MM/YYYY")
+  .option("-o, --output <output>", "Specify output file name, ex: output.csv")
+  .parse();
 
 const options = shell.opts();
-const [startDate, endDate] = String(options.date).trim().split("/");
-const outputFile = options.output;
+const { start, end, output: outputFile } = options;
 
-const outputDirectory = `${projectDir}/${moment(new Date()).format(
+let startDate = formatDateGit(start);
+let endDate = moment().format("YYYY-MM-DD");
+
+if (start && new Date(start) > new Date(end)) {
+  console.error("End date must be equal to or after the start date.");
+  shell.help();
+}
+
+if (end) {
+  const isValid = validateFormat(end);
+  if (isValid) {
+    endDate = formatDateGit(end);
+  }
+}
+
+const outputDirectory = `${projectDir}/${moment().format(
   "DD MMM YYYY hh.mm.ss"
 )}`;
 
@@ -75,7 +84,7 @@ BASE_BRANCH=main\n`;
 
 const fileName = outputFile
   ? path.basename(outputFile)
-  : `Git ${formatDate(startDate)} - ${formatDate(endDate)}.csv`;
+  : `Git ${formatDate(start)} - ${formatDate(end)}.csv`;
 
 const logFilePath = path.join(outputDirectory, fileName);
 
