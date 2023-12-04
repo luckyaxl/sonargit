@@ -10,6 +10,7 @@ import path from "path";
 import { fetchPullRequests } from "./core";
 import {
   checkEnvVar,
+  errorColorAnsi,
   formatDate,
   formatDateGit,
   isValidDateFormat,
@@ -56,8 +57,12 @@ const { start, end, output: outputFile } = options;
 let startDate = formatDateGit(start);
 let endDate = moment().format("YYYY-MM-DD");
 
-if (start && new Date(start) > new Date(end)) {
-  console.error("End date must be equal to or after the start date.");
+if (start && new Date(formatDateGit(start)) > new Date(formatDateGit(end))) {
+  console.error(
+    `${errorColorAnsi(
+      "[!]"
+    )} End date must be equal to or after the start date.\n`
+  );
   shell.help();
 }
 
