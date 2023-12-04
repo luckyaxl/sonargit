@@ -78,7 +78,7 @@ if (end) {
 }
 
 const outputDirectory = `${projectDir}/${moment().format(
-  "DD MMM YYYY hh.mm.ss"
+  "DD MMM YYYY HH.mm.ss"
 )}`;
 
 const config = `SONARQUBE_URL=
