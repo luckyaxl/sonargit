@@ -1,7 +1,7 @@
 import fs from "fs";
 import fetch from "node-fetch";
 import { sequentialProcess } from "../core";
-import { errorColorAnsi, successColorAnsi } from "../utils";
+import { errorColorAnsi, formatDate, successColorAnsi } from "../utils";
 import moment from "moment";
 
 const env = process.env;
@@ -74,9 +74,9 @@ export const fetchPullRequests = async ({
   console.log(
     `${successColorAnsi(
       "[*]"
-    )} Found ${totalData} pull request between ${moment(startDate).format(
-      "DD MMM 'YY"
-    )} - ${moment(endDate).format("DD MMM 'YY")}`
+    )} Found ${totalData} pull request between ${successColorAnsi(
+      moment(startDate).format("DD MMM YYYY")
+    )} - ${successColorAnsi(moment(endDate).format("DD MMM YYYY"))}`
   );
   console.log(`${successColorAnsi("[*]")} Start scraping...\n`);
 
