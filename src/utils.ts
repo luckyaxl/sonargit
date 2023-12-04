@@ -26,7 +26,7 @@ export const extractSonarQubeUrl: SonarQubeExtractor = (text: string) => {
 };
 
 export const isValidDateFormat: DateFormatter = (dateString: string) => {
-  const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+  const dateFormatRegex = /^\d{2}\/\d{2}\/\d{4}$/;
   return dateFormatRegex.test(dateString);
 };
 
@@ -56,7 +56,11 @@ export const formatDate = (str: string) => {
     return null;
   }
 
-  return moment(str).format("DD MMM YYYY");
+  return moment(str, "DD/MM/YYYY").format("DD MMM YYYY");
+};
+
+export const formatDateGit = (str: string) => {
+  return moment(str, "DD/MM/YYYY").format("YYYY-MM-DD");
 };
 
 export const successColorAnsi = (str: string) => {
