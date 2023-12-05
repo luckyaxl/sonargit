@@ -3,19 +3,19 @@ import { errorColorAnsi, extractSonarQubeUrl } from "../utils";
 
 const env = process.env;
 
-interface RegularCommentsResult {
+interface IssueCommentsResult {
   percentage?: string;
   sonarQubeUrl?: string;
 }
 
-const sonarQubeBotuserName = [
+const sonarQubeBotUsers = [
   "catalyst-sonarqube-app-jt[bot]",
   "catalyst-sonarqube-app-voila[bot]",
 ];
 
-export const fetchRegularComments = async (
+export const fetchIssueComments = async (
   pullNumber: string
-): Promise<RegularCommentsResult | undefined> => {
+): Promise<IssueCommentsResult | undefined> => {
   let percentage: string = "0";
   let sonarQubeUrl: string | undefined = undefined;
 
@@ -40,7 +40,7 @@ export const fetchRegularComments = async (
 
     const sonarQubeBotComments =
       regularComments?.filter((item) =>
-        sonarQubeBotuserName.includes(item.user?.login)
+        sonarQubeBotUsers.includes(item.user?.login)
       ) || [];
 
     sonarQubeBotComments?.slice(-1).forEach((comment) => {
