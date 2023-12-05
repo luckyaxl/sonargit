@@ -1,7 +1,7 @@
 import moment from "moment";
 import puppeteer from "puppeteer";
 import fs from "fs";
-import { fetchRegularComments } from "./regularComments";
+import { fetchIssueComments } from "./issueComments";
 import { errorColorAnsi, successColorAnsi, warningColorAnsi } from "../utils";
 
 const env = process.env;
@@ -43,7 +43,7 @@ export const sequentialProcess = async (
 
     for (const item of items) {
       try {
-        const comments = await fetchRegularComments(item.number);
+        const comments = await fetchIssueComments(item.number);
 
         const percentage = comments?.percentage;
         const sonarQubeUrl = comments?.sonarQubeUrl;

@@ -1,3 +1,3 @@
 export * from './pullRequests';
-export * from './regularComments';
+export * from './issueComments';
 export * from './sequentialProcess';
