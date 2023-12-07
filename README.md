@@ -41,7 +41,7 @@ The `extractSonarQubeUrl` function uses a regular expression to extract the Sona
 
 Puppeteer is used to launch a headless browser and navigate to a SonarQube login page.
 It then logs in with a provided username and password.
-After logging in, it iterates through an array of pull requests, extracts information such as coverage percentage and SonarQube URL from GitHub comments, and takes a screenshot of the corresponding SonarQube page.
+After logging in, it iterates through an array of pull requests and takes a screenshot of the corresponding SonarQube page.
 
 ### Sequential Processing of Pull Requests
 
