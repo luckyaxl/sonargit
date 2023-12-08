@@ -53,4 +53,4 @@ The `moment` library is used for date and time formatting.
 
 ### GitHub API Authorization
 
-The code includes a GitHub personal access token (token) for making authenticated requests to the GitHub API.
+The code requires a GitHub personal access token (token) for making authenticated requests to the GitHub API.
