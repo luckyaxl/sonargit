@@ -33,7 +33,7 @@ const validateFormat = (value: string) => {
   return value;
 };
 
-const banner = `${successColorAnsi("SonarGit v0.0.2")}
+const banner = `${successColorAnsi("SonarGit v0.0.4")}
 Automated bot scraper to streamline data extraction from GitHub pull requests
 and capture dynamic SonarQube screenshots.\n`;
 
