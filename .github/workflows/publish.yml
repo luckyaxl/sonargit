@@ -38,6 +38,9 @@ jobs:
           node-version: "18"
           registry-url: 'https://registry.npmjs.org'
 
+      - name: List Dist Directory
+        run: ls -l dist
+
       - name: publish
         run: npm publish --access public
         env:
