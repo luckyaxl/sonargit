@@ -8,10 +8,7 @@ interface IssueCommentsResult {
   sonarQubeUrl?: string;
 }
 
-const sonarQubeBotUsers = [
-  "catalyst-sonarqube-app-jt[bot]",
-  "catalyst-sonarqube-app-voila[bot]",
-];
+const botPrefix = "[bot]";
 
 export const fetchIssueComments = async (
   pullNumber: string
@@ -40,7 +37,7 @@ export const fetchIssueComments = async (
 
     const sonarQubeBotComments =
       regularComments?.filter((item) =>
-        sonarQubeBotUsers.includes(item.user?.login)
+        String(item.user?.login).includes(botPrefix)
       ) || [];
 
     sonarQubeBotComments?.slice(-1).forEach((comment) => {
