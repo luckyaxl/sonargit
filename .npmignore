@@ -26,4 +26,4 @@ lerna-debug.log*
 *.tsbuildinfo\
 
 # build
-dist/
+!dist/
