@@ -24,6 +24,3 @@ lerna-debug.log*
 
 # TypeScript cache
 *.tsbuildinfo\
-
-# image
-src/images/banner.png
