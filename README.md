@@ -1,6 +1,6 @@
 # Sonargit Scraper
 
-![SonarGit Scraper](https://raw.githubusercontent.com/luckyaxl/sonargit/main/src/images/banner.png?token=GHSAT0AAAAAACCXY4L5FF3DPEET7TLTYZLQZLUK45Q)
+![SonarGit Scraper](https://lh3.googleusercontent.com/pw/ADCreHcj2NjQi15XV0sRSI-WbbEQ9oVZKXEfoW-ciCPsLKTCXDsHW6AbkyJf9uAni2HxUaOf86-d6SlGzzNNPAWBeJhKyPLww4uS4cQB05XSaCVB1tzMrBSYsRLUwsYKLCss_kQdJNHUqAy6N9c443tO69JUTvvSPvBCku8_KA1bTSEzQKtrHk1e27c-LS4EeK6xy5sU9x1D-WGT4fJh9a0P5DrwNvnU-dn8R5j7IVpf8BuxA9YEu0_TRghYDFyEsyT80qciUGjzHvMUVaxYDR-tHJhoFiULq5tXDg2WvBwXOlxTG91un-FMjb8yZZxgY3zdFHA6lDglZa8OeqYdT9luhiYQzOiv9hwi9W1RketVaHlCVC_A82uHQ_mAoRI4nunakm0l3Txex5lzNNP1oSSdG3r39UCkkVM2COT9ctN5j3LU4eGD3MdG8v1k71XFvYMyUna0qhuChlx-HEqUQ1IXa4zrZs_AJ5i6ONAxvUBeFcVM9wnSJSpJ8FENQLXRbynji42129bEThiMb_qd9XFaHes0vjYnTgbrYwo_sQm8tUwcrK9y-e4J6pZG-S8AY3eR5PFjoydlw3xj03FXVuDk3kPeaqUecKbLaHfjeHwRmql0Q8Odu-dE1QRFQ6oRZ_7f3AALQem5rjixskKz9Nf14jHX2lIZj4JzzXbVf7B39SgOns36PV8Ka-sf_mwxI12Gcl-PF2vD43hONeT0bwhH-F5KyC6nyYNZ2N6yUH-vBdnL0NtrIxZkS9Hhj-Uizj3euOUcUTsS9-HH8u19X_531vYAIUaYa4cpniuwMNzBFPjR9J5LlJQtievkktUaVzHGyhr87tjHtF3vjy-8-3pfHNEWmPSJ524QEl4bEKy9Ozl3tt9_nSum5VbnponnHvIK5_pjqIJDWA4vWfryurKbWyJ-qt6IkwtAOrMRu9ibUiXL=w1364-h990-s-no-gm?authuser=0)
 
 Introducing Sonargit, an automated bot scraper engineered to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots. Tailored specifically for Catalyst engineers. Unleash productivity with a bot that effortlessly extracts, analyzes, and visualizes KPI data.
 
@@ -11,13 +11,13 @@ Node 18.0 and later.
 ### Installation
 
 ```bash
-~$: npm install -g sonargit
+npm install -g sonargit
 ```
 
 ### Example Usage
 
 ```bash
-~$: sonargit -s 10/10/2023
+sonargit -s 10/10/2023
 ```
 
 ### Logs
