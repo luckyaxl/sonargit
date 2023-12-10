@@ -43,27 +43,31 @@ Log files are generated in the `~/Users/<username>/sonargit` directory.
 
 ### GitHub API Integration
 
-Sonargit leverages the GitHub API to fetch closed pull requests from a repository within a specified date range and user-defined criteria. This includes pull requests merged into specific branches or closed by particular authors.
+Sonargit will fetches closed pull requests from a GitHub repository within a specified date range and meeting certain criteria (e.g., merged into a specific branch, closed by a specific author).
+The GitHub API is utilized to retrieve information about pull requests, including the total count and an array of items.
 
-### Extracting SonarQube Data from Comments
+### Extracting SonarQube Data
 
-The tool fetches comments on GitHub pull requests, extracting coverage percentages and SonarQube URLs from the latest comment. This information is then presented in an organized format.
+The `fetchIssueComments` function fetches comments on a GitHub pull request, extracts coverage percentage and SonarQube URL from the latest comment, and returns the result as an object.
 
-### Puppeteer Web Scraping
+The `extractSonarQubeUrl` function uses a regular expression to extract the SonarQube URL from a given text.
 
-Utilizing Puppeteer, Sonargit launches a headless browser, navigates to a SonarQube login page, and logs in with user-provided credentials. It then iterates through pull requests, capturing screenshots of the corresponding SonarQube pages.
+###  Web Scraping with Puppeteer
+
+Puppeteer is used to launch a headless browser and navigate to a SonarQube login page.
+It then logs in with user provided credentials.
+After logging in, it iterates through an array of pull requests and takes a screenshot of the corresponding SonarQube page.
 
 ### Sequential Processing
 
-Sonargit employs the `sequentialProcess` function to handle pull requests sequentially, avoiding GitHub rate limits and mitigating high memory usage when using Puppeteer.
-
+The `sequentialProcess` function used to handle an array of pull requests in a sequential execution to avoid exceeding GitHub rate limits and prevent high memory usage when using Puppeteer.
 ### Moment.js Integration
 
-The tool utilizes the Moment.js library for effective date and time formatting, ensuring a consistent and user-friendly experience.
+The `moment` library is used for date and time formatting.
 
 ### GitHub API Authorization
 
-Sonargit requires a GitHub personal access token for making authenticated requests to the GitHub API, ensuring secure and authorized data retrieval.
+Sonargit requires a GitHub personal access token (token) for making authenticated requests to the GitHub API.
 
 ## License
 
