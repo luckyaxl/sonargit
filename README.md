@@ -14,7 +14,9 @@ Node 18.0 and later.
 npm install -g sonargit
 ```
 
-### Example Usage
+### Usage
+
+Execute SonarGit Scraper with the desired start date:
 
 ```bash
 sonargit -s 10/10/2023
@@ -22,35 +24,46 @@ sonargit -s 10/10/2023
 
 ### Logs
 
-The log file will be generated in the `~/Users/<username>/sonargit` directory
+Log files are generated in the ~/Users/<username>/sonargit directory.
 
-## Function Breakdown
+## Features
 
-### GitHub API Requests
+### GitHub API Integration
 
-The code fetches closed pull requests from a GitHub repository within a specified date range and meeting certain criteria (e.g., merged into a specific branch, closed by a specific author).
-The GitHub API is utilized to retrieve information about pull requests, including the total count and an array of items.
+SonarGit leverages the GitHub API to fetch closed pull requests from a repository within a specified date range and user-defined criteria. This includes pull requests merged into specific branches or closed by particular authors.
 
-### Fetching Issue Comments and Extracting SonarQube URL
+### Extracting SonarQube Data from Comments
 
-The `fetchIssueComments` function fetches comments on a GitHub pull request, extracts coverage percentage and SonarQube URL from the latest comment, and returns the result as an object.
+The tool fetches comments on GitHub pull requests, extracting coverage percentages and SonarQube URLs from the latest comment. This information is then presented in an organized format.
 
-The `extractSonarQubeUrl` function uses a regular expression to extract the SonarQube URL from a given text.
+### Puppeteer Web Scraping
 
-### Web Scraping with Puppeteer
+Utilizing Puppeteer, SonarGit launches a headless browser, navigates to a SonarQube login page, and logs in with user-provided credentials. It then iterates through pull requests, capturing screenshots of the corresponding SonarQube pages.
 
-Puppeteer is used to launch a headless browser and navigate to a SonarQube login page.
-It then logs in with a provided username and password.
-After logging in, it iterates through an array of pull requests and takes a screenshot of the corresponding SonarQube page.
+### Sequential Processing
 
-### Sequential Processing of Pull Requests
+SonarGit employs the `sequentialProcess` function to handle pull requests sequentially, avoiding GitHub rate limits and mitigating high memory usage when using Puppeteer.
 
-The `sequentialProcess` function used to handle an array of pull requests in a sequential execution to avoid exceeding GitHub rate limits and prevent high memory usage when using Puppeteer.
+### Moment.js Integration
 
-### Usage of Moment.js
-
-The `moment` library is used for date and time formatting.
+The tool utilizes the Moment.js library for effective date and time formatting, ensuring a consistent and user-friendly experience.
 
 ### GitHub API Authorization
 
-The code requires a GitHub personal access token (token) for making authenticated requests to the GitHub API.
+SonarGit requires a GitHub personal access token for making authenticated requests to the GitHub API, ensuring secure and authorized data retrieval.
+
+## License
+
+SonarGit Scraper is licensed under the [MIT License](https://github.com/luckyaxl/sonargit/blob/main/LICENSE).
+
+## Contributing
+
+For information on contributing to SonarGit Scraper, please refer to the [Contributing Guidelines](https://github.com/luckyaxl/sonargit/blob/main/CONTRIBUTING.md).
+
+## Support
+
+For support and bug reporting, please open an issue on the [issue tracker](https://github.com/luckyaxl/sonargit/issues).
+
+## Acknowledgments
+
+Special thanks to the contributors who have dedicated their time and effort to improve SonarGit Scraper.
