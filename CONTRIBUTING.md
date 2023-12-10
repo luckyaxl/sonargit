@@ -8,7 +8,7 @@ We appreciate your interest in contributing to SonarGit Scraper! Your assistance
 - Clone the forked repository to your local machine.
 
    ```bash
-   $ git clone https://github.com/your-username/sonargit.git
+   $ git clone https://github.com/luckyaxl/sonargit.git
    $ cd sonargit
    ```
 - Create a new branch for your contribution.
