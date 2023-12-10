@@ -2,7 +2,7 @@
 
 ![Sonargit Scraper](src/images/banner.png)
 
-Introducing Sonargit, an automated bot scraper engineered to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots. Built specificaly for Catalyst engineers. Gain productivity with a bot that effortlessly extracts, analyzes, and visualizes KPI data.
+Introducing Sonargit, an automated bot scraper engineered to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots. Built specificaly for Catalyst engineers. Increase productivity with a bot that effortlessly extracts, analyzes, and visualizes KPI data.
 
 ## Requirements
 
