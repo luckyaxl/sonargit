@@ -24,7 +24,7 @@ sonargit -s 10/10/2023
 
 ### Logs
 
-Log files are generated in the ~/Users/<username>/sonargit directory.
+Log files are generated in the `~/Users/<username>/sonargit directory`.
 
 ## Features
 
@@ -64,6 +64,3 @@ For information on contributing to SonarGit Scraper, please refer to the [Contri
 
 For support and bug reporting, please open an issue on the [issue tracker](https://github.com/luckyaxl/sonargit/issues).
 
-## Acknowledgments
-
-Special thanks to the contributors who have dedicated their time and effort to improve SonarGit Scraper.
