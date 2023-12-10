@@ -11,7 +11,15 @@
   "files": [
     "dist"
   ],
-  "author": "Lucky Kusuma <lucky@machtwatch.co.id>",
+  "author": "Lucky Kusuma",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luckyaxl/sonargit.git"
+  },
+  "homepage": "https://github.com/luckyaxl/sonargit#readme",
+  "bugs": {
+    "url": "https://github.com/luckyaxl/sonargit/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "commander": "^11.1.0",
