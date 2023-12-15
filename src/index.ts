@@ -87,9 +87,7 @@ SONAR_PASSWORD=
 GITHUB_TOKEN=
 
 OWNER=
-REPO=
-AUTHOR=
-BASE_BRANCH=main\n`;
+AUTHOR=\n`;
 
 const fileName = outputFile
   ? path.basename(outputFile)
@@ -111,9 +109,7 @@ const requiredEnvVariables = [
   "SONAR_PASSWORD",
   "GITHUB_TOKEN",
   "OWNER",
-  "REPO",
   "AUTHOR",
-  "BASE_BRANCH",
 ];
 
 checkEnvVar(requiredEnvVariables);

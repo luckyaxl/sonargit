@@ -20,7 +20,20 @@ export const extractSonarQubeUrl: SonarQubeExtractor = (text: string) => {
   if (match && match[1]) {
     return match[1];
   } else {
-    console.error("SonarQube URL not found in the text.");
+    console.error("SonarQube URL not found.");
+    return null;
+  }
+};
+
+export const extractRepoName = (url: string) => {
+  const regex = /\/repos\/([^\/]+)\/([^\/]+)/;
+  const match = url.match(regex);
+
+  if (match && match.length === 3) {
+    const repo = match[2];
+    
+    return repo;
+  } else {
     return null;
   }
 };

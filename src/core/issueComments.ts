@@ -11,21 +11,18 @@ interface IssueCommentsResult {
 const botPrefix = "[bot]";
 
 export const fetchIssueComments = async (
-  pullNumber: string
+  commentUrl: string
 ): Promise<IssueCommentsResult | undefined> => {
   let percentage: string = "0";
   let sonarQubeUrl: string | undefined = undefined;
 
   try {
-    const response = await fetch(
-      `https://api.github.com/repos/${env.OWNER}/${env.REPO}/issues/${pullNumber}/comments`,
-      {
-        headers: {
-          Accept: "application/vnd.github.json",
-          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-        },
-      }
-    );
+    const response = await fetch(commentUrl, {
+      headers: {
+        Accept: "application/vnd.github.json",
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);
@@ -45,10 +42,6 @@ export const fetchIssueComments = async (
 
       const match = comment.body.match(regex);
       if (match) percentage = match[1];
-      else
-        console.log(
-          `${errorColorAnsi("[!]")} Percentage not found in the text.`
-        );
     });
   } catch (error) {
     console.error(

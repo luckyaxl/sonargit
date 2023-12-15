@@ -2,7 +2,7 @@ import fs from "fs";
 import moment from "moment";
 import fetch from "node-fetch";
 import { sequentialProcess } from "../core";
-import { errorColorAnsi, successColorAnsi } from "../utils";
+import { errorColorAnsi, successColorAnsi, warningColorAnsi } from "../utils";
 
 const env = process.env;
 
@@ -25,9 +25,9 @@ export const fetchPullRequests = async ({
   logFilePath,
 }: FetchPullRequests) => {
   console.log(
-    `${successColorAnsi("[*]")} Fetching data from repo: ${env.OWNER}/${
-      env.REPO
-    }, author: ${env.AUTHOR}`
+    `${successColorAnsi("[*]")} Fetching data from author: ${warningColorAnsi(
+      env.AUTHOR as string
+    )}`
   );
 
   let page = 1;
@@ -36,7 +36,7 @@ export const fetchPullRequests = async ({
   let data: GitHubApiResponse["items"] = [];
 
   while (hasNext) {
-    const queryString: string = `is:pr is:closed merged:${startDate}..${endDate} base:${env.BASE_BRANCH} sort:updated-asc author:${env.AUTHOR} repo:${env.REPO} user:${env.OWNER}`;
+    const queryString: string = `is:pr is:closed merged:${startDate}..${endDate} sort:updated-asc author:${env.AUTHOR} user:${env.OWNER}`;
 
     const apiUrl: string = `https://api.github.com/search/issues?q=${encodeURIComponent(
       queryString

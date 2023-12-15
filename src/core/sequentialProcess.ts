@@ -2,7 +2,12 @@ import moment from "moment";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import { fetchIssueComments } from "./issueComments";
-import { errorColorAnsi, successColorAnsi, warningColorAnsi } from "../utils";
+import {
+  errorColorAnsi,
+  extractRepoName,
+  successColorAnsi,
+  warningColorAnsi,
+} from "../utils";
 
 const env = process.env;
 
@@ -42,8 +47,10 @@ export const sequentialProcess = async (
       new Promise((resolve) => setTimeout(resolve, ms));
 
     for (const item of items) {
+      const repo = extractRepoName(item.repository_url);
+
       try {
-        const comments = await fetchIssueComments(item.number);
+        const comments = await fetchIssueComments(item.comments_url);
 
         const percentage = comments?.percentage;
         const sonarQubeUrl = comments?.sonarQubeUrl;
@@ -54,7 +61,7 @@ export const sequentialProcess = async (
           });
 
           await page.screenshot({
-            path: `${outputDir}/screenshot_pr_${item.number}_${env.REPO}.jpeg`,
+            path: `${outputDir}/screenshot_pr_${item.number}_${repo}.jpeg`,
             type: "jpeg",
             quality: 40,
           });
