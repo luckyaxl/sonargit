@@ -1,12 +1,18 @@
 # Changelog
 
+## v0.0.10 (12/15/2023)
+### Added
+
+### Enhancement
+- Adjust percentage report file
+
 ## v0.0.9 (12/15/2023)
 ### Added
 - This CHANGELOG file to hopefully serve as an evolving example of a standardized open source project CHANGELOG.
 - Support fetch multi repo
 
 ### Enhancement
-- Remove `console.log()` report empty SonarQube URL
+- Remove `console.log()` report for empty SonarQube URL
 
 ## v0.0.8 (12/11/2023)
 *No changelog for this release.*
