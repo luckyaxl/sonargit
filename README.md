@@ -1,5 +1,7 @@
 # Sonargit Scraper
 
+[![npm version](https://img.shields.io/npm/v/sonargit.svg?style=flat-square)](https://www.npmjs.com/package/sonargit)
+
 ![Sonargit Scraper](src/images/banner.png)
 
 Introducing Sonargit, an automated bot scraper engineered to streamline data extraction from GitHub pull requests and capture dynamic SonarQube screenshots. Built specificaly for Catalyst engineers. Increase productivity with a bot that effortlessly extracts, analyzes, and visualizes KPI data.
