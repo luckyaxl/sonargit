@@ -73,7 +73,7 @@ export const sequentialProcess = async (
           .format("DD MMM YYYY");
         const prUrl = item.html_url;
 
-        const msg = `${mergedAt} ${warningColorAnsi(prUrl)} ${percentage}`;
+        const msg = `${mergedAt} ${warningColorAnsi(prUrl)} ${percentage || 0}`;
 
         fs.appendFile(
           logFilePath,

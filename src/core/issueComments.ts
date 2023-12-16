@@ -13,7 +13,7 @@ const botPrefix = "[bot]";
 export const fetchIssueComments = async (
   commentUrl: string
 ): Promise<IssueCommentsResult | undefined> => {
-  let percentage: string = "0";
+  let percentage: string = "";
   let sonarQubeUrl: string | undefined = undefined;
 
   try {
