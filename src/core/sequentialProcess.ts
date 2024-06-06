@@ -14,7 +14,8 @@ const env = process.env;
 export const sequentialProcess = async (
   items: any[],
   outputDir: string,
-  logFilePath: string
+  logFilePath: string,
+  capture: boolean
 ) => {
   let browser;
 
@@ -22,25 +23,32 @@ export const sequentialProcess = async (
     browser = await puppeteer.launch({
       headless: "new",
     });
-    const page = await browser.newPage();
 
-    await page.setViewport({ width: 1512, height: 850 });
+    let page: any;
 
-    await page.goto(`${env.SONARQUBE_URL}/sessions/new`, {
-      waitUntil: "networkidle0",
-    });
+    if (capture) {
+      page = await browser.newPage();
 
-    await page.type("#login", env.SONAR_LOGIN as string);
-    await page.type("#password", env.SONAR_PASSWORD as string);
+      await page.setViewport({ width: 1512, height: 850 });
 
-    await page.keyboard.press("Enter");
+      await page.goto(`${env.SONARQUBE_URL}/sessions/new`, {
+        waitUntil: "networkidle0",
+      });
 
-    await page.waitForNetworkIdle();
+      await page.type("#login", env.SONAR_LOGIN as string);
+      await page.type("#password", env.SONAR_PASSWORD as string);
 
-    const title = await page.title();
+      await page.keyboard.press("Enter");
 
-    if (title === "SonarQube") {
-      throw new Error(`${errorColorAnsi("[!]")} Login SonarQube failed!`);
+      await page.waitForNetworkIdle();
+
+      const title = await page.title();
+
+      if (title === "SonarQube") {
+        throw new Error(`${errorColorAnsi("[!]")} Login SonarQube failed!`);
+      }
+    } else {
+      await browser.close();
     }
 
     const delay = (ms: number) =>
@@ -52,10 +60,10 @@ export const sequentialProcess = async (
       try {
         const comments = await fetchIssueComments(item.comments_url);
 
-        const percentage = comments?.percentage;
+        const percentage = comments?.percentage || "0.00%";
         const sonarQubeUrl = comments?.sonarQubeUrl;
 
-        if (sonarQubeUrl) {
+        if (sonarQubeUrl && capture) {
           await page.goto(sonarQubeUrl, {
             waitUntil: "networkidle0",
           });
@@ -73,11 +81,11 @@ export const sequentialProcess = async (
           .format("DD MMM YYYY");
         const prUrl = item.html_url;
 
-        const msg = `${mergedAt} ${warningColorAnsi(prUrl)} ${percentage || 0}`;
+        const msg = `${mergedAt} ${warningColorAnsi(prUrl)} ${percentage}`;
 
         fs.appendFile(
           logFilePath,
-          `${mergedAt},${prUrl},${percentage}\n`,
+          `${mergedAt},${prUrl},${percentage.replace('%', '')}\n`,
           (err) => {
             if (err) {
               console.error(

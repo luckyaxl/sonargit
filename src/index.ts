@@ -33,7 +33,7 @@ const validateFormat = (value: string) => {
   return value;
 };
 
-const banner = `${successColorAnsi("SonarGit v0.0.10")}
+const banner = `${successColorAnsi("SonarGit v0.0.11")}
 Automated bot scraper to streamline data extraction from GitHub pull requests
 and capture dynamic SonarQube screenshots.\n`;
 
@@ -52,11 +52,12 @@ shell
     "Specify end date in format DD/MM/YYYY",
     validateFormat
   )
+  .option("-c, --capture <capture>", "Capture sonarqube screenshot")
   .option("-o, --output <output>", "Specify output file name, ex: output.csv")
   .parse();
 
 const options = shell.opts();
-const { start, end, output: outputFile } = options;
+const { start, end, output: outputFile, capture } = options;
 
 let startDate = formatDateGit(start);
 let endDate = moment().format("YYYY-MM-DD");
@@ -91,7 +92,9 @@ AUTHOR=\n`;
 
 const fileName = outputFile
   ? path.basename(outputFile)
-  : `Git ${formatDate(start)} - ${formatDate(end) || moment().format("DD MMM YYYY")}.csv`;
+  : `Git ${formatDate(start)} - ${
+      formatDate(end) || moment().format("DD MMM YYYY")
+    }.csv`;
 
 const logFilePath = path.join(outputDirectory, fileName);
 
@@ -103,14 +106,18 @@ if (!fs.existsSync(configPath)) {
   fs.writeFileSync(configPath, config);
 }
 
-const requiredEnvVariables = [
-  "SONARQUBE_URL",
-  "SONAR_LOGIN",
-  "SONAR_PASSWORD",
-  "GITHUB_TOKEN",
-  "OWNER",
-  "AUTHOR",
-];
+const requiredEnvVariables = ["GITHUB_TOKEN", "OWNER", "AUTHOR"];
+const sonarQubeEnvVar = ["SONARQUBE_URL", "SONAR_LOGIN", "SONAR_PASSWORD"];
 
-checkEnvVar(requiredEnvVariables);
-fetchPullRequests({ startDate, endDate, outputDirectory, logFilePath });
+const envVar = capture
+  ? [...requiredEnvVariables, ...sonarQubeEnvVar]
+  : requiredEnvVariables;
+
+checkEnvVar(envVar);
+fetchPullRequests({
+  startDate,
+  endDate,
+  outputDirectory,
+  logFilePath,
+  capture,
+});

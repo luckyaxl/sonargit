@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.0.11 (12/15/2023)
+### Added
+- disable auto capture sonarqube
+
+### Enhancement
+- Add ```-c``` option for capturing sonarqube screenshot
+- remove ```%``` on result
+
 ## v0.0.10 (12/15/2023)
 ### Added
 
