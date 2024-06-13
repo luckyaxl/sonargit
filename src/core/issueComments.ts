@@ -13,7 +13,7 @@ const botPrefix = "[bot]";
 export const fetchIssueComments = async (
   commentUrl: string
 ): Promise<IssueCommentsResult | undefined> => {
-  let percentage: string = "100"; // default value if no percentage is found
+  let percentage: string = "";
   let sonarQubeUrl: string | undefined = undefined;
 
   try {
