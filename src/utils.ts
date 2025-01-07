@@ -20,7 +20,7 @@ export const extractSonarQubeUrl: SonarQubeExtractor = (text: string) => {
   if (match && match[1]) {
     return match[1];
   } else {
-    console.error("SonarQube URL not found.");
+    // console.error("SonarQube URL not found.");
     return null;
   }
 };

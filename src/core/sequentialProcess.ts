@@ -20,36 +20,37 @@ export const sequentialProcess = async (
   let browser;
 
   try {
-    browser = await puppeteer.launch({
-      headless: "new",
-    });
+    // browser = await puppeteer.launch({
+    //   devtools: false,
+    //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    // });
 
-    let page: any;
+    // let page: any;
 
-    if (capture) {
-      page = await browser.newPage();
+    // if (capture) {
+    //   page = await browser.newPage();
 
-      await page.setViewport({ width: 1512, height: 850 });
+    //   await page.setViewport({ width: 1512, height: 850 });
 
-      await page.goto(`${env.SONARQUBE_URL}/sessions/new`, {
-        waitUntil: "networkidle0",
-      });
+    //   await page.goto(`${env.SONARQUBE_URL}/sessions/new`, {
+    //     waitUntil: "networkidle0",
+    //   });
 
-      await page.type("#login", env.SONAR_LOGIN as string);
-      await page.type("#password", env.SONAR_PASSWORD as string);
+    //   await page.type("#login", env.SONAR_LOGIN as string);
+    //   await page.type("#password", env.SONAR_PASSWORD as string);
 
-      await page.keyboard.press("Enter");
+    //   await page.keyboard.press("Enter");
 
-      await page.waitForNetworkIdle();
+    //   await page.waitForNetworkIdle();
 
-      const title = await page.title();
+    //   const title = await page.title();
 
-      if (title === "SonarQube") {
-        throw new Error(`${errorColorAnsi("[!]")} Login SonarQube failed!`);
-      }
-    } else {
-      await browser.close();
-    }
+    //   if (title === "SonarQube") {
+    //     throw new Error(`${errorColorAnsi("[!]")} Login SonarQube failed!`);
+    //   }
+    // } else {
+    //   await browser.close();
+    // }
 
     const delay = (ms: number) =>
       new Promise((resolve) => setTimeout(resolve, ms));
@@ -61,19 +62,19 @@ export const sequentialProcess = async (
         const comments = await fetchIssueComments(item.comments_url);
 
         const percentage = comments?.percentage || "0.00%";
-        const sonarQubeUrl = comments?.sonarQubeUrl;
+        // const sonarQubeUrl = comments?.sonarQubeUrl;
 
-        if (sonarQubeUrl && capture) {
-          await page.goto(sonarQubeUrl, {
-            waitUntil: "networkidle0",
-          });
+        // if (sonarQubeUrl && capture) {
+        //   await page.goto(sonarQubeUrl, {
+        //     waitUntil: "networkidle0",
+        //   });
 
-          await page.screenshot({
-            path: `${outputDir}/screenshot_pr_${item.number}_${repo}.jpeg`,
-            type: "jpeg",
-            quality: 40,
-          });
-        }
+        //   await page.screenshot({
+        //     path: `${outputDir}/screenshot_pr_${item.number}_${repo}.jpeg`,
+        //     type: "jpeg",
+        //     quality: 40,
+        //   });
+        // }
 
         const mergedAt = moment
           .utc(item.pull_request.merged_at)
@@ -85,7 +86,7 @@ export const sequentialProcess = async (
 
         fs.appendFile(
           logFilePath,
-          `${mergedAt},${prUrl},${percentage.replace('%', '')}\n`,
+          `${mergedAt},${prUrl},${percentage.replace("%", "")}\n`,
           (err) => {
             if (err) {
               console.error(
@@ -105,9 +106,9 @@ export const sequentialProcess = async (
           error
         );
 
-        if (browser) {
-          await browser.close();
-        }
+        // if (browser) {
+        //   await browser.close();
+        // }
         process.exit();
       }
     }
@@ -116,14 +117,16 @@ export const sequentialProcess = async (
   } catch (error) {
     console.log(error);
 
-    if (browser) {
-      await browser.close();
-    }
+    // if (browser) {
+    //   await browser.close();
+    // }
 
     process.exit();
   } finally {
-    if (browser) {
-      await browser.close();
-    }
+    // if (browser) {
+    //   await browser.close();
+    // }
   }
+
+  process.exit();
 };
