@@ -9,4 +9,5 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
+  "exclude": ["src/version.js"]
 }

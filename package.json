@@ -3,7 +3,7 @@
   "version": "0.0.15",
   "description": "Automated bot scraper to streamline data extraction from GitHub and SonarQube",
   "scripts": {
-    "build": "npx tsc --outDir dist"
+    "build": "npx tsc --outDir dist && node src/version.js"
   },
   "bin": {
     "sonargit": "./dist/index.js"

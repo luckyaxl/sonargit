@@ -33,17 +33,19 @@ const validateFormat = (value: string) => {
   return value;
 };
 
+const isLocal = !fs.existsSync("./dist");
+
 const getVersion = () => {
-  fetch(
-    "https://raw.githubusercontent.com/luckyaxl/sonargit/refs/heads/main/package.json"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      return data.version;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  if (isLocal) {
+    const packageJson = fs.readFileSync(
+      path.join(__dirname, "..", "package.json"),
+      "utf-8"
+    );
+    return JSON.parse(packageJson).version;
+  } else {
+    const versionJson = fs.readFileSync("./dist/version.json", "utf-8");
+    return JSON.parse(versionJson).key;
+  }
 };
 
 const banner = `${successColorAnsi(`SonarGit v${getVersion()}`)}
