@@ -33,7 +33,20 @@ const validateFormat = (value: string) => {
   return value;
 };
 
-const banner = `${successColorAnsi("SonarGit v0.0.14")}
+const getVersion = () => {
+  fetch(
+    "https://raw.githubusercontent.com/luckyaxl/sonargit/refs/heads/main/package.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return data.version;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const banner = `${successColorAnsi(`SonarGit v${getVersion()}`)}
 Automated bot scraper to streamline data extraction from GitHub pull requests
 and capture dynamic SonarQube screenshots.\n`;
 
