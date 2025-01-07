@@ -1,6 +1,6 @@
 {
   "name": "sonargit",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Automated bot scraper to streamline data extraction from GitHub and SonarQube",
   "scripts": {
     "build": "npx tsc --outDir dist && node src/version.js"
