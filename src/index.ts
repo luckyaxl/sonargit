@@ -33,22 +33,7 @@ const validateFormat = (value: string) => {
   return value;
 };
 
-const isLocal = !fs.existsSync("./dist");
-
-const getVersion = () => {
-  if (isLocal) {
-    const packageJson = fs.readFileSync(
-      path.join(__dirname, "..", "package.json"),
-      "utf-8"
-    );
-    return JSON.parse(packageJson).version;
-  } else {
-    const versionJson = fs.readFileSync("./dist/version.json", "utf-8");
-    return JSON.parse(versionJson).key;
-  }
-};
-
-const banner = `${successColorAnsi(`SonarGit v${getVersion()}`)}
+const banner = `${successColorAnsi(`SonarGit`)}
 Automated bot scraper to streamline data extraction from GitHub pull requests
 and capture dynamic SonarQube screenshots.\n`;
 
