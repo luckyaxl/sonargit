@@ -52,12 +52,11 @@ shell
     "Specify end date in format DD/MM/YYYY",
     validateFormat
   )
-  .option("-c, --capture <capture>", "Capture sonarqube screenshot")
   .option("-o, --output <output>", "Specify output file name, ex: output.csv")
   .parse();
 
 const options = shell.opts();
-const { start, end, output: outputFile, capture } = options;
+const { start, end, output: outputFile } = options;
 
 let startDate = formatDateGit(start);
 let endDate = moment().format("YYYY-MM-DD");
@@ -107,11 +106,8 @@ if (!fs.existsSync(configPath)) {
 }
 
 const requiredEnvVariables = ["GITHUB_TOKEN", "OWNER", "AUTHOR"];
-const sonarQubeEnvVar = ["SONARQUBE_URL", "SONAR_LOGIN", "SONAR_PASSWORD"];
 
-const envVar = capture
-  ? [...requiredEnvVariables, ...sonarQubeEnvVar]
-  : requiredEnvVariables;
+const envVar = requiredEnvVariables
 
 checkEnvVar(envVar);
 fetchPullRequests({
@@ -119,5 +115,4 @@ fetchPullRequests({
   endDate,
   outputDirectory,
   logFilePath,
-  capture,
 });

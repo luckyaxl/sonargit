@@ -8,7 +8,7 @@ interface IssueCommentsResult {
   sonarQubeUrl?: string;
 }
 
-const botPrefix = "[bot]";
+const botPrefix = "github-actions[bot]";
 
 export const fetchIssueComments = async (
   commentUrl: string
@@ -30,7 +30,7 @@ export const fetchIssueComments = async (
 
     const regularComments: any[] = await response.json();
 
-    const regex = /(\d+\.\d+%)\s*Coverage/;
+    const regex = /alt="Coverage:\s*(\d+(?:\.\d+)?%?)"/;
 
     const sonarQubeBotComments =
       regularComments?.filter((item) =>

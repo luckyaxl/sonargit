@@ -11,7 +11,6 @@ interface FetchPullRequests {
   endDate: string;
   outputDirectory: string;
   logFilePath: string;
-  capture: boolean;
 }
 
 interface GitHubApiResponse {
@@ -24,7 +23,6 @@ export const fetchPullRequests = async ({
   endDate,
   outputDirectory,
   logFilePath,
-  capture,
 }: FetchPullRequests) => {
   console.log(
     `${successColorAnsi("[*]")} Fetching data from author: ${warningColorAnsi(
@@ -86,5 +84,5 @@ export const fetchPullRequests = async ({
     fs.mkdirSync(outputDirectory, { recursive: true });
   }
 
-  sequentialProcess(data, outputDirectory, logFilePath, capture);
+  sequentialProcess(data, outputDirectory, logFilePath);
 };
